@@ -1,0 +1,27 @@
+#include "RessourceLoader.h"
+
+RessourceLoader::RessourceLoader(sf::Font font, sf::Clock clock,
+                                int height, int width, float gameSpeed )
+    : p_GameFont(font),         
+      p_GameClock(clock),
+      p_GameWindow( sf::RenderWindow(sf::VideoMode({static_cast<unsigned int>(width), static_cast<unsigned int>(height)}), "Survivor !"))
+{
+}
+
+
+
+
+const sf::Font& RessourceLoader::getFont() const {
+    return p_GameFont;
+}
+
+sf::Clock& RessourceLoader::getClock() {
+    return p_GameClock;
+}
+
+
+sf::RenderWindow& RessourceLoader::getRenderWindow() {
+    return p_GameWindow;
+}
+
+
