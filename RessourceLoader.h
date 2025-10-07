@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <map>
 
 
 
@@ -13,6 +14,11 @@ class RessourceLoader {
         sf::Clock & getClock();
         sf::RenderWindow & getRenderWindow(); 
 
+        sf::Texture& getTexture(const std::string& name);
+
+        void addTexture( const std::string & name);
+
+
         
 
 
@@ -20,10 +26,8 @@ class RessourceLoader {
 
         sf::Font p_GameFont;
         sf::Clock p_GameClock ;
-      
-            
-       
         sf::RenderWindow p_GameWindow ;
-
+        
+        static std::map<std::string, sf::Texture> texturesMap;
         
 };

@@ -24,4 +24,13 @@ sf::RenderWindow& RessourceLoader::getRenderWindow() {
     return p_GameWindow;
 }
 
+sf::Texture& RessourceLoader::getTexture(const std::string& name){
+    return texturesMap.at(name);
+}
+
+void RessourceLoader::addTexture(const std::string & name) {
+    sf::Texture t(name);
+    texturesMap.insert({name,t});
+}
+
 
