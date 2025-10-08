@@ -1,5 +1,6 @@
 #include "core/Game.h"
 #include "core/RessourceLoader.h"
+#include "object/LivingObject2D.h"
 
 Game::Game() :p_ressourceLoader(sf::Font("assets/font/pixelmix.ttf"),
                                 sf::Clock(),
@@ -44,6 +45,23 @@ void Game::GameLaunch() {
         window.display();
     }
     
+}
+
+void Game::addObject(std::unique_ptr<Object2D> obj) {
+    objectsList.push_back(std::move(obj));
+}
+
+void Game::removeObject() {
+    for (auto it = objectsList.begin(); it != objectsList.end(); ) {
+        
+        if (auto living = dynamic_cast<LivingObject2D*>(it->get())) {
+            if (!living->checkIsAlive()) {
+                it = objectsList.erase(it);
+                continue;
+            }
+        }
+        ++it;
+    }
 }
 
 void Game::restartGame() {
