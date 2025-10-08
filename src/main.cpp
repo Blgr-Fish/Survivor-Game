@@ -6,7 +6,5 @@ int main() {
     Game g ;
     g.GameLaunch();
 
-
-
     return 0;
 }

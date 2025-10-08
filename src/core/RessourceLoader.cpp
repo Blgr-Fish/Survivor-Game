@@ -9,6 +9,12 @@ RessourceLoader::RessourceLoader(sf::Font font, sf::Clock clock,
       p_GameClock(clock),
       p_GameWindow( sf::RenderWindow(sf::VideoMode({static_cast<unsigned int>(width), static_cast<unsigned int>(height)}), "Survivor !"))
 {
+
+    sf::Texture placeholder;
+    if (!placeholder.loadFromFile("assets/texture/placeholder.png")) {
+        throw std::runtime_error("Unable to charge texture placeholder.");
+    }
+    texturesMap.insert({"__placeholder__", placeholder});
 }
 
 
@@ -28,10 +34,22 @@ sf::RenderWindow& RessourceLoader::getRenderWindow() {
 }
 
 sf::Texture& RessourceLoader::getTexture(const std::string& name){
-    return texturesMap.at(name);
+    auto it = texturesMap.find(name);
+    if (it != texturesMap.end()) {
+        return it->second;
+    }
+
+    //return placeholder if texture not exists
+    return texturesMap.at("__placeholder__");
 }
 
 void RessourceLoader::addTexture(const std::string & name) {
+
+    //to prevent adding multiple textures with the same name
+     if (texturesMap.find(name) != texturesMap.end()) {
+        return;
+    }
+
     sf::Texture t(name);
     texturesMap.insert({name,t});
 }

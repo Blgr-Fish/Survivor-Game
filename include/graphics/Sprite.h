@@ -8,7 +8,7 @@ class Sprite {
         Sprite(const std::string textureName, RessourceLoader & r) :
             sprite(r.getTexture(textureName)){}
 
-        sf::Sprite getSprite() const {return this->sprite;}
+        sf::Sprite & getSprite()  {return this->sprite;}
 
         void updateSprite(const sf::Texture& newTexture) { this->sprite.setTexture(newTexture);}
 

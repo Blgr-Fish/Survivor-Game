@@ -11,7 +11,13 @@ class Object2D {
             : xCoordinate(x), 
             yCoordinate(y), 
             speed(speed), 
-            objectSprite(spriteName,ressourceLoader) {}
+            objectSprite(spriteName,ressourceLoader) {
+
+                sf::Sprite& spr = objectSprite.getSprite();
+                sf::Vector2u texSize = spr.getTexture().getSize(); 
+                spr.setScale(sf::Vector2f{32.f / texSize.x, 32.f / texSize.y } );
+                spr.setPosition(sf::Vector2f{(float)xCoordinate,(float)yCoordinate});
+            }
 
         Object2D( const std::string& spriteName, RessourceLoader & ressourceLoader) 
             : xCoordinate(0), yCoordinate(0), speed(0), objectSprite(spriteName,ressourceLoader) {}
@@ -24,7 +30,18 @@ class Object2D {
 
         void updateSpeed(int speed) {this->speed = speed;}
 
+        void setPosition(int newX, int newY) { 
+            this->xCoordinate = newX;
+            this->yCoordinate = newY; 
+            objectSprite.getSprite().setPosition(sf::Vector2f{(float)xCoordinate,(float)yCoordinate});}
+
+        Sprite getSpriteObject() { return this->objectSprite;}
+
+    
+
         virtual void update() = 0;
+
+
 
 
     protected:

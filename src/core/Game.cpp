@@ -25,7 +25,8 @@ void Game::GameLaunch() {
 
     sf::RenderWindow  & window = p_ressourceLoader.getRenderWindow() ;
 
-    Player player(int health, const std::string& spriteName,RessourceLoader& ressourceLoader);
+    Player player(100, "null",p_ressourceLoader);
+    player.setPosition(360,360);
     
 
 
@@ -45,6 +46,7 @@ void Game::GameLaunch() {
             }
         */
         window.clear(sf::Color::Black); // clear screen 
+        window.draw(player.getSpriteObject().getSprite());
         window.display();
     }
     
