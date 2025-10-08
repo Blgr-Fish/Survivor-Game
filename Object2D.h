@@ -1,17 +1,20 @@
 #pragma once
 
 #include "Sprite.h"
-#include "RessourceLoader.h"
+
 
 
 class Object2D {
 
     public:
-        Object2D(int x, int y, int speed, std::string spriteName) 
-            : xCoordinate(x), yCoordinate(y), speed(speed), ObjectSprite(RessourceLoader.getTexture(spriteName)) {}
+        Object2D(int x, int y, int speed, const std::string& spriteName, RessourceLoader & ressourceLoader) 
+            : xCoordinate(x), 
+            yCoordinate(y), 
+            speed(speed), 
+            objectSprite(spriteName,ressourceLoader) {}
 
-        Object2D() 
-            : xCoordinate(0), yCoordinate(0), speed(0) {}
+        Object2D( const std::string& spriteName, RessourceLoader & ressourceLoader) 
+            : xCoordinate(0), yCoordinate(0), speed(0), objectSprite(spriteName,ressourceLoader) {}
 
         virtual ~Object2D() {}  
 
@@ -29,5 +32,5 @@ class Object2D {
         int yCoordinate;
         int speed ;
 
-        Sprite ObjectSprite;
+        Sprite objectSprite;
 };

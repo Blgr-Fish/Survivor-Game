@@ -5,8 +5,8 @@
 
 class Sprite {
     public:
-        Sprite(const std::string texture, RessourceLoader & r) :
-            sprite(r.getTexture(texture)){}
+        Sprite(const std::string textureName, RessourceLoader & r) :
+            sprite(r.getTexture(textureName)){}
 
         sf::Sprite getSprite() const {return this->sprite;}
 

@@ -5,11 +5,11 @@
 class LivingObject2D : public Object2D {
     public:
 
-        LivingObject2D(int x, int y, int speed, int health)
-                : Object2D(x, y, speed), healthPoints(health), isAlive(true) {}
+        LivingObject2D(int x, int y, int speed, int health, const std::string& spriteName,RessourceLoader& ressourceLoader)
+                : Object2D(x, y, speed, spriteName, ressourceLoader), healthPoints(health), isAlive(true) {}
 
-        LivingObject2D(int health)
-                : Object2D(), healthPoints(health), isAlive(true) {}
+        LivingObject2D(int health, const std::string& spriteName,RessourceLoader& ressourceLoader)
+                : Object2D(spriteName, ressourceLoader), healthPoints(health), isAlive(true) {}
 
         int getHealthPoints() const {return healthPoints;}
         bool checkIsAlive() const {return isAlive;}

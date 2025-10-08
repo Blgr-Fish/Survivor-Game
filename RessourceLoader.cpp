@@ -1,5 +1,8 @@
 #include "RessourceLoader.h"
 
+std::map<std::string, sf::Texture> RessourceLoader::texturesMap;
+
+
 RessourceLoader::RessourceLoader(sf::Font font, sf::Clock clock,
                                 int height, int width, float gameSpeed )
     : p_GameFont(font),         
