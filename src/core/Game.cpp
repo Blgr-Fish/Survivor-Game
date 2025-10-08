@@ -1,6 +1,8 @@
 #include "core/Game.h"
 #include "core/RessourceLoader.h"
 #include "object/LivingObject2D.h"
+#include "object/Player.h"
+
 
 Game::Game() :p_ressourceLoader(sf::Font("assets/font/pixelmix.ttf"),
                                 sf::Clock(),
@@ -23,6 +25,7 @@ void Game::GameLaunch() {
 
     sf::RenderWindow  & window = p_ressourceLoader.getRenderWindow() ;
 
+    Player player(int health, const std::string& spriteName,RessourceLoader& ressourceLoader);
     
 
 

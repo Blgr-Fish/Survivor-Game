@@ -3,7 +3,13 @@
 
 class Player : public LivingObject2D {
     public:
-        Player();
+        Player(int health, const std::string& spriteName,RessourceLoader& ressourceLoader);
+
+
+        void move() override ;
+        void update() override ;
+
+        
 
 
     private:

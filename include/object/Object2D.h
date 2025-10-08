@@ -24,7 +24,7 @@ class Object2D {
 
         void updateSpeed(int speed) {this->speed = speed;}
 
-        virtual void update() const = 0;
+        virtual void update() = 0;
 
 
     protected:

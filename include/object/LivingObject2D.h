@@ -13,9 +13,12 @@ class LivingObject2D : public Object2D {
 
         int getHealthPoints() const {return healthPoints;}
         bool checkIsAlive() const {return isAlive;}
-        void setStatus(bool status) { this->isAlive = status ;}
+        void setStatus(bool status) {this->isAlive = status ;}
 
         void reduceHealth(int value) {healthPoints -= value ; if (healthPoints <= 0) setStatus(false);}
+
+        virtual void move() = 0;
+
     
     protected:
         int healthPoints;
