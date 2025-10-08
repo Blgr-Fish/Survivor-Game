@@ -1,7 +1,7 @@
-#include "Game.h"
-#include "RessourceLoader.h"
+#include "core/Game.h"
+#include "core/RessourceLoader.h"
 
-Game::Game() :p_ressourceLoader(sf::Font("font/pixelmix.ttf"),
+Game::Game() :p_ressourceLoader(sf::Font("assets/font/pixelmix.ttf"),
                                 sf::Clock(),
                                 SCREEN_HEIGHT,
                                 SCREEN_WIDTH,

@@ -1,6 +1,6 @@
 #pragma once 
 
-#include "Object2D.h"
+#include "object/Object2D.h"
 
 class LivingObject2D : public Object2D {
     public:

@@ -1,8 +1,8 @@
 CXX = g++
-CXXFLAGS = -Wall -std=c++17
+CXXFLAGS = -Wall -std=c++17 -Iinclude
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 
-SRC = main.cpp Game.cpp RessourceLoader.cpp
+SRC = $(wildcard src/**/*.cpp) src/main.cpp
 OBJ = $(SRC:.cpp=.o)
 EXEC = survior
 

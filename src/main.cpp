@@ -1,5 +1,5 @@
-#include "Game.h"
-#include "RessourceLoader.h"
+#include "core/Game.h"
+#include "core/RessourceLoader.h"
 
 int main() {
     

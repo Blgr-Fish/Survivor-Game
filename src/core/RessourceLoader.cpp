@@ -1,4 +1,4 @@
-#include "RessourceLoader.h"
+#include "core/RessourceLoader.h"
 
 std::map<std::string, sf::Texture> RessourceLoader::texturesMap;
 
