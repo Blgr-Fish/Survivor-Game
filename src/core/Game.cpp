@@ -39,13 +39,14 @@ void Game::GameLaunch() {
                 window.close();
         }
 
-        /*
-        if (p_clock.getElapsedTime().asSeconds() > GAME_SPEED) {
-                
-                p_clock.restart();
+        
+        if (p_ressourceLoader.getClock().getElapsedTime().asSeconds() > GAME_SPEED) {
+                player.update();
+                p_ressourceLoader.getClock().restart();
             }
-        */
+        
         window.clear(sf::Color::Black); // clear screen 
+        
         window.draw(player.getSpriteObject().getSprite());
         window.display();
     }
