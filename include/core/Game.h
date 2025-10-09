@@ -31,7 +31,7 @@ private:
 
     const int SCREEN_WIDTH = 1260;
     const int SCREEN_HEIGHT = 720;
-    const float GAME_SPEED = 0.05; //0.1s frame
+    const float GAME_SPEED = 0.01; //0.1s frame
 
     RessourceLoader  p_ressourceLoader ;
 

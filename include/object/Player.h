@@ -9,9 +9,15 @@ class Player : public LivingObject2D {
         void move() override ;
         void update() override ;
 
+        void setCameraSize(float sizeX,float sizeY);
+
+        sf::View & getCamera() ;
+
         
 
 
     private:
+
+        sf::View camera ;
 
 };

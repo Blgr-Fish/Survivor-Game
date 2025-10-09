@@ -2,6 +2,7 @@
 #include "core/RessourceLoader.h"
 #include "object/LivingObject2D.h"
 #include "object/Player.h"
+#include <iostream>
 
 
 Game::Game() :p_ressourceLoader(sf::Font("assets/font/pixelmix.ttf"),
@@ -28,8 +29,12 @@ void Game::GameLaunch() {
 
     Player player(100, "null",p_ressourceLoader);
     player.setPosition(360,360);
+    player.setCameraSize(SCREEN_WIDTH,SCREEN_HEIGHT);
+
 
     sf::Sprite background = setupBackground();
+
+    
 
     
         
@@ -46,6 +51,7 @@ void Game::GameLaunch() {
 
         
         if (p_ressourceLoader.getClock().getElapsedTime().asSeconds() > GAME_SPEED) {
+                window.setView(player.getCamera());
                 player.update();
                 p_ressourceLoader.getClock().restart();
             }

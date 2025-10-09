@@ -4,12 +4,15 @@ Player::Player(int health, const std::string& spriteName,RessourceLoader& ressou
     :LivingObject2D(
                 630, 
                 360,
-                16,  
+                8,  
                 health,
                 spriteName,
                 ressourceLoader
-                ) 
-    {}
+                ) ,
+     camera()
+    {
+        camera.setCenter(sf::Vector2f{(float)xCoordinate,(float)yCoordinate});
+    }
 
 
 
@@ -30,6 +33,7 @@ void Player::move() {
     }
 
     setPosition(newXCoord,newYCoord);
+    camera.setCenter(sf::Vector2f{(float)newXCoord,(float)newYCoord});
 }
 
 
@@ -37,3 +41,8 @@ void Player::update() {
     this->move();
 }
 
+void Player::setCameraSize(float sizeX,float sizeY) {
+    camera.setSize(sf::Vector2f{sizeX,sizeY});
+}
+
+sf::View  & Player::getCamera() { return this->camera;}
