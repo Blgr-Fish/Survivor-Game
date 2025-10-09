@@ -27,10 +27,12 @@ void Game::GameLaunch() {
 
     sf::RenderWindow  & window = p_ressourceLoader.getRenderWindow() ;
 
-    Player player(100, "null",p_ressourceLoader);
-    player.setPosition(360,360);
-    player.setCameraSize(SCREEN_WIDTH,SCREEN_HEIGHT);
+    auto playerPtr = std::make_unique<Player>(100, "null",p_ressourceLoader);
+    Player* playerAcess = playerPtr.get();
+    addObject(std::move(playerPtr));
 
+    playerAcess->setPosition(SCREEN_WIDTH/2,SCREEN_HEIGHT/2);
+    playerAcess->setCameraSize(SCREEN_WIDTH,SCREEN_HEIGHT);
 
     sf::Sprite background = setupBackground();
 
@@ -50,16 +52,16 @@ void Game::GameLaunch() {
         }
 
         
-        if (p_ressourceLoader.getClock().getElapsedTime().asSeconds() > GAME_SPEED) {
-                window.setView(player.getCamera());
-                player.update();
+        
+        
+        window.clear(sf::Color::Black); // clear screen 
+         if (p_ressourceLoader.getClock().getElapsedTime().asSeconds() > GAME_SPEED) {
+                window.draw(background);
+                updateObjects(window);
+                window.display();
                 p_ressourceLoader.getClock().restart();
             }
         
-        window.clear(sf::Color::Black); // clear screen 
-        window.draw(background);
-        window.draw(player.getSpriteObject().getSprite());
-        window.display();
     }
     
 }
@@ -68,13 +70,21 @@ void Game::addObject(std::unique_ptr<Object2D> obj) {
     objectsList.push_back(std::move(obj));
 }
 
-void Game::removeObject() {
+void Game::updateObjects(sf::RenderWindow & window) {
     for (auto it = objectsList.begin(); it != objectsList.end(); ) {
         
         if (auto living = dynamic_cast<LivingObject2D*>(it->get())) {
+            //LivingObjects
             if (!living->checkIsAlive()) {
                 it = objectsList.erase(it);
                 continue;
+            } else { 
+                //Player
+                if (auto player = dynamic_cast<Player*>(it->get())) {
+                    window.setView(player->getCamera());
+                } 
+                living->update();
+                window.draw(living->getSpriteObject().getSprite());
             }
         }
         ++it;

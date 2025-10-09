@@ -23,7 +23,7 @@ public:
     float getGameSpeed() const ;
 
     void addObject(std::unique_ptr<Object2D> obj);
-    void removeObject() ;
+    void updateObjects(sf::RenderWindow & window) ;
 
     sf::Sprite setupBackground();
 
