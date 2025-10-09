@@ -16,7 +16,7 @@ class RessourceLoader {
 
         sf::Texture& getTexture(const std::string& name);
 
-        void addTexture( const std::string & name);
+        void addTexture( const std::string & nameFile, const std::string & path);
 
 
         

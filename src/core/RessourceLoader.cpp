@@ -43,15 +43,15 @@ sf::Texture& RessourceLoader::getTexture(const std::string& name){
     return texturesMap.at("__placeholder__");
 }
 
-void RessourceLoader::addTexture(const std::string & name) {
+void RessourceLoader::addTexture(const std::string & nameFile, const std::string & path) {
 
     //to prevent adding multiple textures with the same name
-     if (texturesMap.find(name) != texturesMap.end()) {
+     if (texturesMap.find(nameFile) != texturesMap.end()) {
         return;
     }
 
-    sf::Texture t(name);
-    texturesMap.insert({name,t});
+    sf::Texture t(path);
+    texturesMap.insert({nameFile,t});
 }
 
 

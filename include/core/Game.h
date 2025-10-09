@@ -25,6 +25,8 @@ public:
     void addObject(std::unique_ptr<Object2D> obj);
     void removeObject() ;
 
+    sf::Sprite setupBackground();
+
 private:
 
     const int SCREEN_WIDTH = 1260;

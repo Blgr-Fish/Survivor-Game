@@ -10,7 +10,8 @@ Game::Game() :p_ressourceLoader(sf::Font("assets/font/pixelmix.ttf"),
                                 SCREEN_WIDTH,
                                 GAME_SPEED)
 {
-   
+ 
+    p_ressourceLoader.addTexture("missing","assets/texture/missing.png");
 }  
     
 
@@ -27,7 +28,11 @@ void Game::GameLaunch() {
 
     Player player(100, "null",p_ressourceLoader);
     player.setPosition(360,360);
+
+    sf::Sprite background = setupBackground();
+
     
+        
 
 
     // Boucle principale
@@ -46,7 +51,7 @@ void Game::GameLaunch() {
             }
         
         window.clear(sf::Color::Black); // clear screen 
-        
+        window.draw(background);
         window.draw(player.getSpriteObject().getSprite());
         window.display();
     }
@@ -83,4 +88,24 @@ void Game::restartGame() {
 
  float Game::getGameSpeed() const {
     return GAME_SPEED;
+}
+
+sf::Sprite Game::setupBackground() {
+    
+    sf::Texture & t((p_ressourceLoader.getTexture("missing")));
+    t.setRepeated(true);
+    t.setSmooth(false);
+
+    sf::Sprite s(t);
+
+
+        
+    int scaleFactor = t.getSize().x / 32; // 256 / 32 = 8
+    s.setScale(sf::Vector2f{1.f / scaleFactor, 1.f / scaleFactor});
+
+    // on définit le rect à une taille plus grande → la texture se répète
+    s.setTextureRect(sf::IntRect({0, 0}, {SCREEN_WIDTH * scaleFactor,
+    SCREEN_HEIGHT * scaleFactor}));
+
+    return s ;
 }
