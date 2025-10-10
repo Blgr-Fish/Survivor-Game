@@ -2,6 +2,7 @@
 #include "core/RessourceLoader.h"
 #include "object/LivingObject2D.h"
 #include "object/Player.h"
+#include "object/Dummy.h"
 #include <iostream>
 
 
@@ -28,13 +29,22 @@ void Game::GameLaunch() {
     sf::RenderWindow  & window = p_ressourceLoader.getRenderWindow() ;
 
     auto playerPtr = std::make_unique<Player>(100, "null",p_ressourceLoader);
-    Player* playerAcess = playerPtr.get();
-    addObject(std::move(playerPtr));
 
+    Player* playerAcess = playerPtr.get();
     playerAcess->setPosition(SCREEN_WIDTH/2,SCREEN_HEIGHT/2);
     playerAcess->setCameraSize(SCREEN_WIDTH,SCREEN_HEIGHT);
 
+    auto DummyPtr = std::make_unique<Dummy>(300,300,p_ressourceLoader,*playerAcess);
+
+    addObject(std::move(playerPtr));
+    addObject(std::move(DummyPtr));
+
+
     sf::Sprite background = setupBackground();
+
+
+
+    
 
     
 
@@ -42,7 +52,7 @@ void Game::GameLaunch() {
         
 
 
-    // Boucle principale
+    // Main Loop
     while ( window.isOpen()) {
         std::optional<sf::Event> event;
         while ((event = (window.pollEvent()))) {
@@ -86,6 +96,7 @@ void Game::updateObjects(sf::RenderWindow & window) {
                 living->update();
                 window.draw(living->getSpriteObject().getSprite());
             }
+            //End LivingObjects
         }
         ++it;
     }
